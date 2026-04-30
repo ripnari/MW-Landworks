@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — MW Landworks</title>
+<meta name="description" content="Browse the complete project gallery from MW Landworks — excavation, hardscaping, retaining walls, paver installations, and more across Northern New Jersey.">
+
+<meta property="og:title" content="Gallery — MW Landworks">
+<meta property="og:description" content="Browse our complete project portfolio across Northern NJ.">
+<meta property="og:type" content="website">
+
+<link rel="icon" type="image/png" href="images/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================
+   DESIGN TOKENS (mirror of index.html)
+   ========================= */
+:root {
+  --navy: #0F1B2D;
+  --navy-2: #1A2A42;
+  --cyan: #1FA8DC;
+  --cyan-deep: #1789B5;
+  --bone: #F7F4ED;
+  --bone-2: #EFEBE0;
+  --earth: #8B6F47;
+  --ink: #1a1a1a;
+  --line: rgba(15, 27, 45, 0.10);
+
+  --display: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --max: 1440px;
+  --pad: clamp(1.25rem, 4vw, 3rem);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bone);
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+
+::selection { background: var(--navy); color: var(--bone); }
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cyan-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: var(--cyan-deep);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  font-variation-settings: "opsz" 144;
+}
+h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+
+.serif-italic { font-style: italic; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.1rem 1.75rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  transition: all 0.35s var(--ease-out);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--navy);
+  color: var(--bone);
+}
+.btn-primary:hover {
+  background: var(--cyan-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -10px rgba(15, 27, 45, 0.45);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--bone);
+  border: 1px solid rgba(247, 244, 237, 0.4);
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover {
+  background: rgba(247, 244, 237, 0.1);
+  border-color: rgba(247, 244, 237, 0.7);
+}
+.btn-light {
+  background: var(--bone);
+  color: var(--navy);
+  border: 1px solid var(--line);
+}
+.btn-light:hover {
+  background: var(--navy);
+  color: var(--bone);
+  transform: translateY(-2px);
+}
+.btn-arrow {
+  width: 1.5rem;
+  height: 1px;
+  background: currentColor;
+  position: relative;
+  transition: width 0.35s var(--ease-out);
+}
+.btn-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: translate(0, -50%) rotate(45deg);
+}
+.btn:hover .btn-arrow { width: 2rem; }
+.btn-arrow.back { transform: rotate(180deg); }
+
+/* =========================
+   HEADER (solid version for inner pages)
+   ========================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(247, 244, 237, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.header-logo img { height: 42px; }
+.header-nav { display: flex; align-items: center; gap: 2rem; }
+.header-nav a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+  position: relative;
+  padding: 0.5rem 0;
+}
+.header-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-out);
+}
+.header-nav a:hover::after, .header-nav a.active::after { transform: scaleX(1); transform-origin: left; }
+.header-nav a.active { color: var(--cyan-deep); }
+
+.header-cta { display: flex; align-items: center; gap: 1rem; }
+.header-phone {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.header-phone-label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: -0.25rem;
+}
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  color: var(--navy);
+}
+.menu-toggle span {
+  width: 24px;
+  height: 1.5px;
+  background: currentColor;
+  transition: all 0.3s var(--ease-out);
+}
+.menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .header-nav, .header-phone { display: none; }
+  .menu-toggle { display: flex; }
+  .header-cta .btn { display: none; }
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--navy);
+  z-index: 99;
+  padding: 6rem var(--pad) 2rem;
+  transform: translateX(100%);
+  transition: transform 0.45s var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  visibility: hidden;
+}
+.mobile-nav.open { transform: translateX(0); visibility: visible; }
+.mobile-nav a {
+  font-family: var(--display);
+  font-size: 2.5rem;
+  color: var(--bone);
+  border-bottom: 1px solid rgba(247, 244, 237, 0.15);
+  padding: 1rem 0;
+}
+.mobile-nav-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.mobile-nav-footer .btn { width: 100%; justify-content: center; }
+
+/* =========================
+   PAGE INTRO
+   ========================= */
+.page-intro {
+  padding: clamp(3rem, 7vw, 6rem) 0 clamp(2rem, 4vw, 4rem);
+  background: var(--bone);
+}
+.page-intro-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+}
+.page-intro h1 {
+  font-weight: 300;
+  margin: 0.75rem 0 0;
+}
+.page-intro h1 em {
+  font-style: italic;
+  color: var(--cyan-deep);
+}
+.page-intro-text p {
+  font-size: 1.05rem;
+  color: var(--navy-2);
+  max-width: 50ch;
+  line-height: 1.65;
+}
+@media (max-width: 800px) {
+  .page-intro-grid { grid-template-columns: 1fr; align-items: start; gap: 1.5rem; }
+}
+
+/* =========================
+   GALLERY GRID
+   ========================= */
+.full-gallery {
+  padding: 0 0 clamp(4rem, 8vw, 6rem);
+}
+.full-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.full-gallery-item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--navy);
+}
+.full-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-out);
+}
+.full-gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(15, 27, 45, 0.7));
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+}
+.full-gallery-item:hover img { transform: scale(1.06); }
+.full-gallery-item:hover::after { opacity: 1; }
+
+.full-gallery-caption {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  z-index: 2;
+  color: var(--bone);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.4s var(--ease-out);
+}
+.full-gallery-item:hover .full-gallery-caption { opacity: 1; transform: translateY(0); }
+.full-gallery-caption-num {
+  font-family: var(--display);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--cyan);
+  margin-bottom: 0.2rem;
+  display: block;
+}
+.full-gallery-caption-title {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+@media (max-width: 900px) {
+  .full-gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+}
+@media (max-width: 480px) {
+  .full-gallery-grid { grid-template-columns: 1fr; }
+}
+
+/* Loading state */
+.gallery-loading {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--navy-2);
+}
+.gallery-loading-spinner {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--line);
+  border-top-color: var(--cyan-deep);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 1rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.gallery-empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--navy-2);
+  font-family: var(--display);
+  font-size: 1.5rem;
+}
+
+.gallery-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.gallery-meta-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--navy-2);
+}
+.gallery-meta-count strong {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--navy);
+  margin-right: 0.5rem;
+  letter-spacing: 0;
+}
+.back-home {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--cyan-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.back-home::before {
+  content: "←";
+  display: inline-block;
+}
+.back-home:hover { color: var(--navy); }
+
+/* =========================
+   LIGHTBOX
+   ========================= */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 27, 45, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 4vh 4vw;
+}
+.lightbox.open { display: flex; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.lightbox img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.lightbox-close, .lightbox-prev, .lightbox-next {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(247, 244, 237, 0.1);
+  color: var(--bone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(247, 244, 237, 0.2);
+  transition: all 0.3s;
+}
+.lightbox-close { top: 2rem; right: 2rem; }
+.lightbox-prev { left: 2rem; top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: 2rem; top: 50%; transform: translateY(-50%); }
+.lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
+  background: var(--cyan);
+  border-color: var(--cyan);
+}
+.lightbox-meta {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(247, 244, 237, 0.7);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+@media (max-width: 600px) {
+  .lightbox-prev { left: 1rem; }
+  .lightbox-next { right: 1rem; }
+  .lightbox-close { top: 1rem; right: 1rem; }
+}
+
+/* =========================
+   FOOTER (matches index.html)
+   ========================= */
+.site-footer {
+  background: var(--navy);
+  color: rgba(247, 244, 237, 0.7);
+  padding: 4rem var(--pad) 2rem;
+}
+.footer-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(247, 244, 237, 0.1);
+}
+.footer-brand img { height: 56px; margin-bottom: 1.25rem; }
+.footer-brand p { font-size: 0.875rem; line-height: 1.6; max-width: 32ch; }
+.footer-col h4 {
+  color: var(--bone);
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.footer-col a { font-size: 0.95rem; transition: color 0.3s; }
+.footer-col a:hover { color: var(--cyan); }
+.footer-bottom {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+.footer-social { display: flex; gap: 0.75rem; }
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(247, 244, 237, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.footer-social a:hover {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: var(--navy);
+}
+.footer-social svg { width: 16px; height: 16px; }
+@media (max-width: 800px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column-reverse; text-align: center; }
+}
+
+/* Sticky mobile bottom CTA */
+.sticky-mobile-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  background: var(--navy);
+  padding: 0.75rem;
+  gap: 0.5rem;
+  border-top: 1px solid rgba(247, 244, 237, 0.1);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+.sticky-mobile-cta a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.sticky-mobile-cta a:first-child {
+  background: rgba(247, 244, 237, 0.1);
+  color: var(--bone);
+  border: 1px solid rgba(247, 244, 237, 0.2);
+}
+.sticky-mobile-cta a:last-child {
+  background: var(--cyan);
+  color: var(--navy);
+}
+.sticky-mobile-cta svg { width: 16px; height: 16px; }
+@media (max-width: 800px) {
+  .sticky-mobile-cta { display: flex; }
+  body { padding-bottom: 4.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="site-header">
+  <a href="index.html" class="header-logo" aria-label="MW Landworks home">
+    <img src="images/logo-on-light.png" alt="MW Landworks" width="170">
+  </a>
+
+  <nav class="header-nav" aria-label="Primary">
+    <a href="index.html#services">Services</a>
+    <a href="gallery.html" class="active">Our Work</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+
+  <div class="header-cta">
+    <a href="tel:+12018740254" class="header-phone">
+      <span class="header-phone-label">Call Today</span>
+      (201) 874-0254
+    </a>
+    <a href="index.html#contact" class="btn btn-primary">Free Estimate</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+  <a href="index.html#services">Services</a>
+  <a href="gallery.html">Our Work</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#contact">Contact</a>
+  <div class="mobile-nav-footer">
+    <a href="tel:+12018740254" class="btn btn-ghost">Call (201) 874-0254</a>
+    <a href="index.html#contact" class="btn btn-primary">Get a Free Estimate</a>
+  </div>
+</nav>
+
+<!-- ========== PAGE INTRO ========== -->
+<section class="page-intro">
+  <div class="wrap page-intro-grid">
+    <div>
+      <a href="index.html" class="back-home">Back to home</a>
+      <h1>Project <em>archive</em>.</h1>
+    </div>
+    <div class="page-intro-text">
+      <p>Every job we've put our name on. Excavation, site work, hardscape, drainage, septic, snow removal — the full body of work across Bergen, Passaic, and the surrounding area.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FULL GALLERY ========== -->
+<section class="full-gallery">
+  <div class="wrap">
+    <div class="gallery-meta" id="gallery-meta" hidden>
+      <span class="gallery-meta-count"><strong id="gallery-count">0</strong>Projects</span>
+      <a href="index.html" class="back-home" style="margin-bottom: 0;">Back to home</a>
+    </div>
+
+    <div class="gallery-loading" id="gallery-loading">
+      <div class="gallery-loading-spinner"></div>
+      <div>Loading projects…</div>
+    </div>
+
+    <div class="full-gallery-grid" id="gallery-grid" hidden></div>
+
+    <div class="gallery-empty" id="gallery-empty" hidden>
+      Gallery coming soon.
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="images/logo-on-dark.png" alt="MW Landworks">
+      <p>Excavation, hardscape, and site work across Northern New Jersey. Licensed, insured, and ready for your project.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="index.html#services">Excavation</a></li>
+        <li><a href="index.html#services">Hardscaping</a></li>
+        <li><a href="index.html#services">Drainage</a></li>
+        <li><a href="index.html#services">Septic</a></li>
+        <li><a href="index.html#services">Snow Removal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="gallery.html">Our Work</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+12018740254">(201) 874-0254</a></li>
+        <li><a href="mailto:info@mwlandwork.com">info@mwlandwork.com</a></li>
+        <li>Franklin Lakes, NJ</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© <span id="year"></span> MW Landworks. All rights reserved.</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/mwlandworks/" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=100075778823381" aria-label="Facebook" target="_blank" rel="noopener">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky mobile bottom CTA -->
+<div class="sticky-mobile-cta">
+  <a href="tel:+12018740254">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
+    Call
+  </a>
+  <a href="index.html#contact">
+    Get a Quote
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+  </a>
+</div>
+
+<!-- ========== LIGHTBOX ========== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project image">
+  <button class="lightbox-close" id="lb-close" aria-label="Close">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+  </button>
+  <button class="lightbox-prev" id="lb-prev" aria-label="Previous">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+  </button>
+  <button class="lightbox-next" id="lb-next" aria-label="Next">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+  </button>
+  <img id="lb-img" src="" alt="">
+  <div class="lightbox-meta" id="lb-meta"></div>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Mobile menu
+const menuToggle = document.getElementById('menu-toggle');
+const mobileNav = document.getElementById('mobile-nav');
+menuToggle.addEventListener('click', () => {
+  menuToggle.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+});
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menuToggle.classList.remove('open');
+  mobileNav.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+/* ===========================================================
+   GALLERY — Mirror of homepage config (full archive view)
+   =========================================================== */
+window.GALLERY_CONFIG = {
+  CLOUD_NAME: 'mwlandworks',                       // Cloudinary cloud name (auto-syncs gallery)
+  TAG: 'mwlandworks-gallery',
+  TRANSFORM: 'f_auto,q_auto,w_1200',
+  TRANSFORM_LIGHTBOX: 'f_auto,q_auto,w_2400'
+};
+
+// Static fallback list — shown when Cloudinary not configured.
+// Mirrors the homepage's selection plus a few extras pulled from the build.
+const STATIC_FALLBACK = [
+  { src: 'images/gallery-05-boulder-panorama.jpg', title: 'Multi-Tier Boulder Wall' },
+  { src: 'images/gallery-01-paver-patio.jpg',      title: 'Two-Tone Paver Patio' },
+  { src: 'images/gallery-02-sunset-hardscape.jpg', title: 'Layered Hardscape & Lighting' },
+  { src: 'images/gallery-07-fleet.jpg',            title: 'Equipment & Crew' },
+  { src: 'images/gallery-03-paver-walkway.jpg',    title: 'Paver Walkway & Landscape' },
+  { src: 'images/gallery-04-retaining-wall.jpg',   title: 'Block Retaining Wall' },
+  { src: 'images/gallery-09-paver-driveway.jpg',   title: 'Custom Paver Driveway' },
+  { src: 'images/gallery-08-pool-excavation.jpg',  title: 'Pool Excavation' },
+  { src: 'images/gallery-06-sunset-excavation.jpg',title: 'Site Excavation' },
+  { src: 'images/gallery-10-foundation.jpg',       title: 'Foundation Excavation' },
+  { src: 'images/gallery-11-drainage.jpg',         title: 'Drainage System' },
+  { src: 'images/gallery-12-precast-wall.jpg',     title: 'Precast Stone Wall' },
+];
+
+const grid = document.getElementById('gallery-grid');
+const loading = document.getElementById('gallery-loading');
+const empty = document.getElementById('gallery-empty');
+const meta = document.getElementById('gallery-meta');
+const countEl = document.getElementById('gallery-count');
+
+function buildCaption(resource, index) {
+  const ctx = (resource.context && resource.context.custom) || resource.context || {};
+  let title = ctx.caption || ctx.alt || '';
+  if (!title) {
+    const name = (resource.public_id || '').split('/').pop() || '';
+    title = name
+      .replace(/[-_]+/g, ' ')
+      .replace(/\b\w/g, ch => ch.toUpperCase())
+      .replace(/\d{6,}/g, '')
+      .trim();
+  }
+  return title || `Project ${String(index + 1).padStart(2, '0')}`;
+}
+
+function cloudinaryUrl(resource, transform) {
+  const cloud = window.GALLERY_CONFIG.CLOUD_NAME;
+  const fmt = resource.format ? `.${resource.format}` : '';
+  return `https://res.cloudinary.com/${cloud}/image/upload/${transform}/${resource.public_id}${fmt}`;
+}
+
+function render(items) {
+  grid.innerHTML = '';
+  items.forEach((it, i) => {
+    const fig = document.createElement('figure');
+    fig.className = 'full-gallery-item';
+    fig.dataset.img = it.lightbox || it.src;
+    fig.dataset.title = it.title;
+    fig.innerHTML = `
+      <img src="${it.src}" alt="${it.title.replace(/"/g, '&quot;')}" loading="lazy">
+      <figcaption class="full-gallery-caption">
+        <span class="full-gallery-caption-num">— ${String(i + 1).padStart(2, '0')}</span>
+        <span class="full-gallery-caption-title">${it.title}</span>
+      </figcaption>
+    `;
+    grid.appendChild(fig);
+  });
+  loading.hidden = true;
+  if (items.length === 0) {
+    empty.hidden = false;
+    meta.hidden = true;
+  } else {
+    grid.hidden = false;
+    countEl.textContent = items.length;
+    meta.hidden = false;
+  }
+  bindLightbox();
+}
+
+function loadGallery() {
+  const cfg = window.GALLERY_CONFIG;
+  if (!cfg.CLOUD_NAME) {
+    // Static fallback
+    render(STATIC_FALLBACK.map(it => ({ ...it, lightbox: it.src })));
+    return;
+  }
+  const url = `https://res.cloudinary.com/${cfg.CLOUD_NAME}/image/list/${cfg.TAG}.json`;
+  fetch(url)
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(data => {
+      const resources = (data && data.resources) || [];
+      const items = resources.map((r, i) => ({
+        src: cloudinaryUrl(r, cfg.TRANSFORM),
+        lightbox: cloudinaryUrl(r, cfg.TRANSFORM_LIGHTBOX),
+        title: buildCaption(r, i)
+      }));
+      render(items);
+    })
+    .catch(err => {
+      console.warn('Cloudinary fetch failed; using static fallback.', err);
+      render(STATIC_FALLBACK.map(it => ({ ...it, lightbox: it.src })));
+    });
+}
+
+// Lightbox
+let galleryItems = [];
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbMeta = document.getElementById('lb-meta');
+const lbClose = document.getElementById('lb-close');
+const lbPrev = document.getElementById('lb-prev');
+const lbNext = document.getElementById('lb-next');
+let lbIndex = 0;
+
+function openLightbox(i) {
+  lbIndex = i;
+  const item = galleryItems[i];
+  lbImg.src = item.dataset.img;
+  lbImg.alt = item.dataset.title;
+  lbMeta.textContent = `${String(i + 1).padStart(2, '0')} / ${String(galleryItems.length).padStart(2, '0')}  ·  ${item.dataset.title}`;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function nav(dir) {
+  lbIndex = (lbIndex + dir + galleryItems.length) % galleryItems.length;
+  openLightbox(lbIndex);
+}
+function bindLightbox() {
+  galleryItems = Array.from(document.querySelectorAll('.full-gallery-item'));
+  galleryItems.forEach((item, i) => { item.onclick = () => openLightbox(i); });
+}
+
+lbClose.addEventListener('click', closeLightbox);
+lbPrev.addEventListener('click', () => nav(-1));
+lbNext.addEventListener('click', () => nav(1));
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') nav(-1);
+  if (e.key === 'ArrowRight') nav(1);
+});
+
+loadGallery();
+</script>
+
+</body>
+</html>
